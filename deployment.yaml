@@ -1,0 +1,26 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asgkuber-pnt-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: asgkuber-pnt
+  template:
+    metadata:
+      labels:
+        app: asgkuber-pnt
+    spec:
+      containers:
+      - name: asgkuber-pnt-container
+      image: mezour/exercise-pnt-web:v0.0
+      ports:
+        - containerPort: 8080
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
