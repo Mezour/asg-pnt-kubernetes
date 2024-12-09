@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: asgkuber-pnt-Ingress
+spec:
+  tls:
+  - hosts:
+      - tugas-PNT.com
+    secretName: testsecret-tls
+  rules:
+  - host: tugas-PNT.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/Hai"
+        backend:
+          service:
+            name: asgkuber-pnt-service
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/Hello"
+        backend:
+          service:
+            name: asgkuber-pnt-service
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/Goodbye"
+        backend:
+          service:
+            name: asgkuber-pnt-service
+            port: 
+              number: 80
